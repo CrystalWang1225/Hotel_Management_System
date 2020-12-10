@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Rooms</title>
+
+    <link href="../static/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../static/bootstrap/css/bootstrap-theme.min.css">
+    <script src="../static/bootstrap/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="../static/css/styles.css">
+    <style type="text/css">
+      #us{
+        float: right;
+        margin-right: 20px;
+        margin-top: 10px;
+      }
+      #us h3{
+        margin: 0 0 0 0;
+      }
+      .ps{
+        width: 60%;
+        margin-top: 20px;
+        margin-left: 20%
+      }
+      #icon{
+        float: right;
+        margin-top: -15px;
+      }
+      #signout{
+        width: 100px;
+        height: 20px;
+      }
+      #signout a{
+        padding: 2px 0px 2px 20px;
+      }
+    </style>
+  </head>
+<body>
+<div id="us">
+<ul class="nav nav-pills">
+  <li><h3> {{session['current_user']}} &nbsp</h3></li>
+  <li role="presentation" class="active" id="signout"><a href="/logout">Sign Out</a></li>
+ </ul> 
+</div>
+<div>
+<ul class="nav nav-tabs">
+  <li role="presentation" class="active"><a href="">Rooms</a></li>
+  <li role="presentation"><a href="/available">Check Availability</a></li>
+  <li role="presentation"><a href="/reserve">Reserve</a></li>
+  <li role="presentation"><a href="/about_user">My Profile</a></li>
+</ul>
+</div>
+<div class="ps">
+{% for i in rooms %}
+<div class="panel panel-info">
+  <div class="panel-heading">
+    <div><h3 class="panel-title">Room Number: {{i.room_number}}</h3></div>
+  </div>
+  <div class="panel-body">
+      {% for j in room_type %}
+          {% if i.room_type == j.tid %}
+            <p>Room Type: {{ j.type_name }}</p>
+            <p>Room Description:{{ j.description }}</p>
+      <p>Price: {{i.cost}}</p>
+      <p>Capacity: {{i.capacity}}</p>
+  </div>
+</div>
+{% endif%}
+{% endfor %}
+{% endfor %}
+</div>    
+</body>
+</html>

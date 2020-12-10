@@ -5,7 +5,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-	<title>About</title>
+	<title>About My Account</title>
 
 	<link href="../static/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 	<link rel="stylesheet" href="../static/bootstrap/css/bootstrap-theme.min.css">
@@ -59,16 +59,12 @@
 </div>
 <div>
 <ul class="nav nav-tabs">
-  <li role="presentation"><a href="/posts">Posts</a></li>
-	<li role="presentation"><a href="/add">Add Posts</a></li>
-  <li role="presentation" class="active"><a href="">About</a></li>
+  <li role="presentation"><a href="/rooms">Rooms</a></li>
+	<li role="presentation"><a href="/available">Check Availability</a></li>
+    <li role="presentation"><a href="/reserve">Reservation</a></li>
+  <li role="presentation" class="active"><a href="">My Account</a></li>
 </ul>
 </div>
-
-<div class="edit_pro">
-	<a class="btn btn-lg btn-primary btn-block">Edit Profile</a>
-</div>
-
 
 <div class="row">
 	<div class="col-md-8">
@@ -96,6 +92,32 @@
   		</table>
 	</div>
 </div>
+
+<div class="ps">
+{% for i in reservations %}
+<div class="panel panel-info">
+  <div class="panel-heading">
+    <div><h3 class="panel-title">Reservation Number: {{i.rid}}</h3></div>
+      <div id="icon">
+      <a class="glyphicon glyphicon-pencil" href="/update/{{ i.rid }}"></a>&nbsp &nbsp
+      <a class="glyphicon glyphicon-trash" id="del" href="/delete/{{ i.rid }}"></a>
+
+    </div>
+  </div>
+  <div class="panel-body">
+      {% for j in booked %}
+          {% if i.rid == j.brid %}
+              <p>Room number: {{j.room_id}}</p>
+      <p>Checkin-Date: {{i.checkin_date}}</p>
+      <p>Checkout-Date: {{i.checkout_date}}</p>
+              <p>Number of Guests: {{i.num_guests}}</p>
+  </div>
+ </div>
+{% endif%}
+{% endfor %}
+{% endfor %}
+</div>
+
 	
 </body>
 </html>

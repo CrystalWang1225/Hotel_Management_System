@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Add Posts</title>
+    <title>Update Reservation</title>
 
     <link href="/../../static/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="/../../static/bootstrap/css/bootstrap-theme.min.css">
@@ -49,21 +49,27 @@
 </div>
 <div>
 <ul class="nav nav-tabs">
-  <li role="presentation" ><a href="/posts">Posts</a></li>
-    <li role="presentation" class="active"><a href="">Update Posts</a></li>
-  <li role="presentation"><a href="/friends">Friends</a></li>
-  <li role="presentation"><a href="/finddriends">Find Friends</a></li>
-  <li role="presentation"><a href="/about_user">About</a></li>
+  <li role="presentation" ><a href="/Rooms">Rooms</a></li>
+  <li role="presentation"><a href="/available">Check Availability</a></li>
+  <li role="presentation"><a href="/reserve">Reservation</a></li>
+  <li role="presentation"><a href="/about_user"> My Profile</a></li>
+  <li role="presentation" class="active"><a href="">Update Reservations</a></li>
 </ul>
 </div>
 <div >
   <form action="" method="POST">
   <table align="center">
     <tr>
-      <td>{{ blogpost.title(class="form-control",placeholder="Title") }}</td>
+      <td>{{ updated_res.checkin_date(class="form-control",placeholder="Checkin Date") }}</td>
     </tr>
     <tr>
-      <td>{{ blogpost.description(class="form-control",rows="3",placeholder="Description") }}</td>
+      <td>{{ updated_res.checkout_date(class="form-control",placeholder="Checkout Date") }}</td>
+    </tr>
+    <tr>
+      <td>{{ updated_res.num_guests(class="form-control",placeholder="Number of Guests") }}</td>
+    </tr>
+    <tr>
+      <td>{{ updated_res.room_numbers(class="form-control",placeholder="Rooms, if more than 1, please separate it by ','") }}</td>
     </tr>
     <tr>
       <td align="center"><input class="submitbt" type="submit" value="Post" /></td>

@@ -1,4 +1,4 @@
-from blogger import app
+from hotel import app
 
 if __name__ == '__main__':
     app.run(debug=True)

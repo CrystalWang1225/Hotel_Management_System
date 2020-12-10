@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Add Rooms</title>
+
+    <link href="/../../static/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/../../static/bootstrap/css/bootstrap-theme.min.css">
+    <script src="../../static/bootstrap/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="../static/css/styles.css">
+    <style type="text/css">
+      #us{
+        float: right;
+        margin-right: 20px;
+        margin-top: 10px;
+      }
+      #us h3{
+        margin: 0 0 0 0;
+      }
+      .submitbt{
+        width: 100%;
+        height: 130%;
+        background-color: #337ab7;
+        color:white;
+        border: none;
+        border-radius: 5px;
+      }
+      table{
+        width: 30%;
+        height: 60%;
+        margin-top: 30px;
+      }
+      table tr td{
+        padding-bottom: 10px;
+      }
+      #signout{
+        width: 100px;
+        height: 20px;
+      }
+      #signout a{
+        padding: 2px 0px 2px 20px;
+      }
+    </style>
+  </head>
+<body>
+<div id="us">
+<ul class="nav nav-pills">
+  <li><h3>{{ session['current_user']}} &nbsp</h3></li>
+  <li role="presentation" class="active" id="signout"><a href="/logout">Sign Out</a></li>
+ </ul>
+</div>
+<div>
+<ul class="nav nav-tabs">
+  <li role="presentation" ><a href="/rooms">Rooms</a></li>
+    <li role="presentation" ><a href="/available">Check Availability</a></li>
+    <li role="presentation" class="active"><a href="">Reservation</a></li>
+  <li role="presentation"><a href="/about_user">My Account</a></li>
+</ul>
+</div>
+<div >
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    {% for message in messages %}
+      <h3 class="flashes" align="center" style="color:#337ab7">{{ message }}</h3>
+    {% endfor %}
+  {% endif %}
+{% endwith %}
+
+  <form action="" method="POST">
+  <table align="center">
+    <tr>
+      <td>{{ reservation.checkin_date(class="form-control",placeholder="Checkin Date") }}</td>
+    </tr>
+    <tr>
+      <td>{{ reservation.checkout_date(class="form-control",rows="3",placeholder="Checkout Date") }}</td>
+    </tr>
+    <tr>
+      <td>{{ reservation.num_guests(class="form-control",placeholder="Enter Number of Guest") }}</td>
+    </tr>
+     <tr>
+      <td>{{ reservation.room_numbers(class="form-control",placeholder="Enter Room Numbers, seperate by ','") }}</td>
+    </tr>
+    <tr>
+      <td align="center"><input class="submitbt" type="submit" value="Reserve Now" /></td>
+    </tr>
+  </table>
+  </form>
+</div>
+
+</body>
+</html>
