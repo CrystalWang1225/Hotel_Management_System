@@ -1,6 +1,6 @@
 from flask import Flask, request, session, redirect, url_for, render_template, flash
 
-from .models import User, Posts, db, Rooms, Room_type, Booked, Reservations, Payment
+from .models import User, db, Rooms, Room_type, Booked, Reservations, Payment
 from .forms import PaymentForm, SignUpForm, SignInForm, AboutUserForm, CheckAvailForm, ReserveForm
 
 from hotel import app
