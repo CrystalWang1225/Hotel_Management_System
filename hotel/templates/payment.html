@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Update Reservation</title>
+    <title>Payment</title>
 
     <link href="/../../static/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="/../../static/bootstrap/css/bootstrap-theme.min.css">
@@ -28,7 +28,7 @@
         background-color: #337ab7;
         color:white;
         border: none;
-        border-radius: 5px; 
+        border-radius: 5px;
       }
       table{
         width: 30%;
@@ -45,7 +45,7 @@
 <ul class="nav nav-pills">
   <li><h3>{{session['current_user']}}</h3></li>
   <li role="presentation" class="active"><a href="/logout">Sign Out</a></li>
- </ul> 
+ </ul>
 </div>
 <div>
 <ul class="nav nav-tabs">
@@ -53,27 +53,21 @@
   <li role="presentation"><a href="/available">Check Availability</a></li>
   <li role="presentation"><a href="/reserve">Reservation</a></li>
   <li role="presentation"><a href="/about_user"> My Profile</a></li>
-  <li role="presentation" class="active"><a href="">Update Reservations</a></li>
+  <li role="presentation" class="active"><a href="">Payments</a></li>
 </ul>
 </div>
 <div >
   <form action="" method="POST">
   <table align="center">
     <tr>
-      <td>{{ updated_res.checkin_date(class="form-control",placeholder="Checkin Date") }}</td>
+      <td>{{ payment.cardname(class="form-control",placeholder="Please Enter the Name of the card") }}</td>
     </tr>
     <tr>
-      <td>{{ updated_res.checkout_date(class="form-control",placeholder="Checkout Date") }}</td>
+      <td>{{ payment.cardnumber(class="form-control",placeholder="Card Number") }}</td>
     </tr>
     <tr>
-      <td>{{ updated_res.num_guests(class="form-control",placeholder="Number of Guests") }}</td>
+      <td align="center"><input class="submitbt" type="submit" value="Submit Payment" /></td>
     </tr>
-    <tr>
-      <td>{{ updated_res.room_numbers(class="form-control",placeholder="Rooms, if more than 1, please separate it by ','") }}</td>
-    </tr>
-    <tr>
-      <td align="center"><input class="submitbt" type="submit" value="Post" /></td>
-    </tr> 
   </table>
   </form>
 </div>

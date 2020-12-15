@@ -21,17 +21,6 @@ class User(db.Model):
         self.email = email
 
 
-class Posts(db.Model):
-    pid = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    title = db.Column(db.String(100))
-    description = db.Column(db.String(1000))
-    puid = db.Column(db.Integer, db.ForeignKey('user.uid'))
-
-    def __init__(self, title, description, puid):
-        self.title = title
-        self.description = description
-        self.puid = puid
-
 class Room_type(db.Model):
     tid = db.Column(db.Integer,primary_key=True,autoincrement=True)
     type_name = db.Column(db.String(100))
@@ -42,7 +31,6 @@ class Room_type(db.Model):
         self.description = description
 
 class Rooms(db.Model):
-    # rid = db.Column(db.Integer,primary_key=True,autoincrement=True)
     room_number = db.Column(db.Integer,primary_key=True)
     room_type = db.Column(db.Integer,db.ForeignKey('room_type.tid'))
     cost = db.Column(db.Integer)
@@ -61,12 +49,14 @@ class Reservations(db.Model):
     checkin_date = db.Column(db.DateTime)
     checkout_date = db.Column(db.DateTime)
     num_guests = db.Column(db.Integer)
+    costs = db.Column(db.Integer)
 
-    def __init__(self, ruid, checkin_date, checkout_date,num_guests):
+    def __init__(self, ruid, checkin_date, checkout_date,num_guests,costs):
         self.ruid = ruid
         self.checkin_date = checkin_date
         self.checkout_date = checkout_date
         self.num_guests = num_guests
+        self.costs = costs
 
 class Booked(db.Model):
     bid = db.Column(db.Integer, primary_key=True, autoincrement=True)
@@ -76,4 +66,20 @@ class Booked(db.Model):
     def __init__(self, brid, room_id):
         self.brid = brid
         self.room_id = room_id
+
+class Payment(db.Model):
+    pid = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    puid = db.Column(db.Integer, db.ForeignKey('user.uid'))
+    prid = db.Column(db.Integer, db.ForeignKey('reservations.rid'))
+    card_name = db.Column(db.String(50))
+    card_number = db.Column(db.Integer)
+    payment_status = db.Column(db.String(50))
+
+    def __init__(self, puid, prid, card_name, card_number, payment_status):
+        self.puid = puid
+        self.prid = prid
+        self.card_name = card_name
+        self.card_number = card_number
+        self.payment_status = payment_status
+
 db.create_all()
